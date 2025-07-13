@@ -5,24 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conexões de Máfia</title>
     <link rel="stylesheet" href="style.css">
-    
+    <link rel="shortcut icon" href="imagens/barbearia-icon.ico" type="image/x-icon">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+    </style>
 </head>
 <body>
     <header id="cabeca">
-        <img src="imagens/logo-comp.png" alt="logo barbearia">
-        <div id="button"><a href="cortes.html" target="_self"">Agendar</a></div>
+        
+        <div id="agendar"><a href="cortes.html" target="_self"">AGENDAR</a>
+        </div>
+
+        <div id="hamburguer">
+            <button onclick="abrirmenu()">
+                <img src="imagens/botao.png" alt="Menu">
+            </button>
+        </div>
     </header>
-    <header id="inico">
-        <h1>Conexões de Máfia</h1>
+
+    <header id="header">
+        <div id="titulo">
+            <picture>
+                <source media="(max-width: 600px)" srcset="imagens/esc-grande-micro.png" type="image/png">
+                <source media="(max-width: 750px)" srcset="imagens/esc-grande-pq.png" type="image/png">
+                <img src="imagens/esc-grande.png" alt="nome do estabelecimento">
+            </picture>
+        </div>  
     </header>
 
     <main>
-
+        <section id="conteudo">
+            <h1>Nossa história</h1>
+        </section>
     </main>
 
     <footer>
+  <div class="footer-box">
+    <div class="coluna" id="coluna-contato">
+      <h1 id="contato">Contato:</h1>
+      <div id="insta">
+        <img src="imagens/logo-instagram.png" alt="logo instagram">
+        <a href="https://www.instagram.com/barbearia_conexoes_de_mafia/">@barbearia_conexoes_de_mafia</a>
+      </div>
+      <div id="whats">
+        <img src="imagens/logo-whats.png" alt="logo WhatsApp">
+        47 9 9600-8213
+      </div>
+    </div>
 
-    </footer>
+    <div class="coluna" id="coluna-suporte">
+      <h1 id="suporte">Suporte:</h1>
+      <a href="mailto:jorgeluishermesfilho@gmail.com?subject=Suporte&body=Olá, preciso de ajuda com...">
+    jorgeluishermesfilho@gmail.com
+    </a>
+    </div>
+  </div>
+</footer>
     <script src="script.js"></script>
 </body>
 </html>
