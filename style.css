@@ -180,32 +180,6 @@ section#conteudo > h1 {
 }
 }
 
-@media screen and (max-width: 550px) {
-  header#header {
-    height: 300px;
-  }
-
-  main {
-  min-width: 280px;
-  max-width: 1500px;
-  height: 900px;
-  margin: auto;
-  margin-top: 20px;
-  padding: 20px 10px 10px 10px;
-  }
-
-  section#conteudo {
-  border-radius: 10px;
-  background-color: rgb(255, 255, 255);
-  max-width: 360px;
-  min-width: 280px;
-  height: 500px;
-  margin: auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.411);
-}
-
-}
-
 div#titulo {
   display: flex;
   justify-content: center;
