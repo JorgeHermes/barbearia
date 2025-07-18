@@ -23,7 +23,7 @@ header#cabeca {
   align-items: center;
   background-color: black;
   height: 40px;
-  padding: 15px;
+  padding: 15px 0px 10px 0px;
 }
 
 #agendar {
@@ -141,6 +141,17 @@ section#conteudo > h1 {
   text-indent: 8px;
 }
 
+div#titulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+picture > img {
+  padding-top: 100px;
+}
+
 @media screen and (max-width: 900px) {
   header#header {
   background-image: url("imagens/homens.png");
@@ -167,8 +178,7 @@ section#conteudo > h1 {
   height: 500px;
   margin: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.411);
-}
-}
+}}
 
 @media screen and (max-width: 690px) {
   header#header {
@@ -192,11 +202,11 @@ section#conteudo > h1 {
   height: 500px;
   margin: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.411);
-}
-}
+}}
 
 @media screen and (max-width: 590px) {
   header#header {
+    margin: 0px;
     height: 300px;
   }
 
@@ -209,6 +219,12 @@ section#conteudo > h1 {
   padding: 20px 10px 10px 10px;
   }
 
+  section#conteudo > h1 {
+  font-size: 1.2em;
+  padding: 8px 0 0 0;
+  text-indent: 8px
+  }
+
   section#conteudo {
   border-radius: 10px;
   background-color: rgb(255, 255, 255);
@@ -219,17 +235,44 @@ section#conteudo > h1 {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.411);
 } }
 
+@media screen and (max-width: 490px) {
+  header#header {
+    margin: 0px;
+    height: 300px;
+  }
 
-div#titulo {
+  main {
+  min-width: 280px;
+  max-width: 1500px;
+  height: 900px;
+  margin: auto;
+  margin-top: 20px;
+  padding: 20px 10px 10px 10px;
+  }
+
+  section#conteudo > h1 {
+    font-size: 1.2em;
+    padding: 8px 0 0 0;
+    text-indent: 8px
+  }
+
+  section#conteudo {
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  max-width: 340px;
+  min-width: 280px;
+  height: 500px;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.411);
+  }
+  div#titulo {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: transparent;
-}
+  padding-bottom: 100px;
+} }
 
-picture > img {
-  padding-top: 100px;
-}
 
 footer {
   border-top: 0.5px solid rgba(255, 255, 255, 0.068);
