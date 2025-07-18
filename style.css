@@ -17,57 +17,44 @@ header {
 }
 
 header#cabeca {
-  margin-top: 5px;
+  margin-top: 0px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   background-color: black;
   height: 40px;
+  padding: 15px;
 }
 
-div#agendar {
-  font-size: 0.7em;
-  width: 70px;
-  object-fit: cover;
-  vertical-align: top;
-  padding: 0 10px 0 0;
+#agendar {
+  background-color: #00ff6a;
+  margin-right: 10px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-family: 'Bebas Neue', sans-serif;
+  animation: pulsar 1.5s ease-in-out infinite;
+  transition: transform 0.2s;
 }
 
-div#agendar > a {
-  font-family: system-ui, sans-serif;
-  font-weight: 700;
-  padding: 11px;
+#agendar a {
   text-decoration: none;
-  background-color: #2ecc55;
-  border-radius: 15px; 
   color: black;
   font-size: 1em;
-  cursor: pointer;
-  animation: flashPulse 2s infinite ease-in-out;
-  box-shadow: 0 0 10px #2ecc55, 0 0 20px #2ecc55;
-  transition: transform 0.3s ease;
 }
 
-@keyframes flashPulse {
+@keyframes pulsar {
   0% {
-    transform: scale(1) rotate(0deg);
-    box-shadow: 0 0 10px #2ecc55, 0 0 20px #2ecc55;
-  }
-  25% {
-    transform: scale(1.05) rotate(-2deg);
-    box-shadow: 0 0 20px #2ecc55, 0 0 30px #2ecc55;
+    transform: scale(1);
+    box-shadow: 0 0 5px #2ecc71;
   }
   50% {
-    transform: scale(1.1) rotate(0deg);
-    box-shadow: 0 0 30px #2ecc55, 0 0 40px #2ecc55;
-  }
-  75% {
-    transform: scale(1.05) rotate(2deg);
-    box-shadow: 0 0 20px #2ecc55, 0 0 30px #2ecc55;
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #2ecc71;
   }
   100% {
-    transform: scale(1) rotate(0deg);
-    box-shadow: 0 0 10px #2ecc55, 0 0 20px #2ecc55;
+    transform: scale(1);
+    box-shadow: 0 0 5px #2ecc71;
   }
 }
 
@@ -86,6 +73,35 @@ div#hamburguer > button {
 
 header#cabeca > img {
   margin-right: auto;
+}
+
+@media screen and (max-width: 600px) {
+  #agendar {
+    padding: 8px 16px;
+    font-size: 0.9em;
+    border-radius: 8px;
+    animation: pulsar 2s ease-in-out infinite;
+    margin-right: 10px;
+  }
+
+  #hamburguer button {
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+  }
+
+  #hamburguer img {
+    width: 100%;
+    height: auto;
+  }
+
+  #cabeca {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-top: 0px;
+  }
 }
 
 header#header {
@@ -125,10 +141,9 @@ section#conteudo > h1 {
   text-indent: 8px;
 }
 
-/* MEDIA QUERIES */
 @media screen and (max-width: 900px) {
   header#header {
-  background-image: url("imagens/homens-pq.png");
+  background-image: url("imagens/homens.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -179,6 +194,31 @@ section#conteudo > h1 {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.411);
 }
 }
+
+@media screen and (max-width: 590px) {
+  header#header {
+    height: 300px;
+  }
+
+  main {
+  min-width: 280px;
+  max-width: 1500px;
+  height: 900px;
+  margin: auto;
+  margin-top: 20px;
+  padding: 20px 10px 10px 10px;
+  }
+
+  section#conteudo {
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  max-width: 360px;
+  min-width: 280px;
+  height: 500px;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.411);
+} }
+
 
 div#titulo {
   display: flex;
