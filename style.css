@@ -386,16 +386,3 @@ div.coluna > a {
   padding: 10px 0;
 }
 }
-
-@media (prefers-color-scheme: dark) {
-  html, body {
-    background-color: #ffffff !important;
-    color: #000000 !important;
-    filter: none !important;
-  }
-
-  * {
-    background-color: inherit !important;
-    color: inherit !important;
-  }
-}
