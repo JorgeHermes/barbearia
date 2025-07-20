@@ -119,8 +119,9 @@ header#header {
 main {
   min-width: 280px;
   max-width: 1500px;
+  height: 900px;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 50px;
   padding: 80px 10px 10px 10px;
 }
 
@@ -177,7 +178,7 @@ div#titulo > img {
   max-width: 1500px;
   height: 900px;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 50px;
   padding: 40px 10px 10px 10px;
   }
 
@@ -201,7 +202,7 @@ div#titulo > img {
   max-width: 1500px;
   height: 900px;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 50px;
   padding: 20px 10px 10px 10px;
   }
 
@@ -226,7 +227,7 @@ div#titulo > img {
   max-width: 1500px;
   height: 900px;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 50px;
   padding: 20px 10px 10px 10px;
   }
 
@@ -255,8 +256,9 @@ div#titulo > img {
   main {
   min-width: 280px;
   max-width: 1500px;
+  height: 900px;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 50px;
   padding: 20px 10px 10px 10px;
   }
 
