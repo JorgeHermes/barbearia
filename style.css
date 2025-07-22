@@ -49,8 +49,8 @@ header#cabeca {
     box-shadow: 0 0 5px #2ecc71;
   }
   50% {
-    transform: scale(1.03);
-    box-shadow: 0 0 15px #2ecc71;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #2ecc71;
   }
   100% {
     transform: scale(1);
