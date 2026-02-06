@@ -29,7 +29,7 @@ header#cabeca {
 
 #agendar {
   background-color: #00ff6a;
-  margin-right: 10px;
+  margin-right: 20px;
   padding: 10px 20px;
   border-radius: 10px;
   font-weight: bold;
@@ -59,23 +59,6 @@ header#cabeca {
   }
 }
 
-div#hamburguer {
-  width: 30px;
-  height: -14px;
-  object-fit: cover;
-  vertical-align: top;
-  padding: 0 17px 0 5px;
-}
-
-div#hamburguer > button {
-  background-color: transparent;
-  border: 0;
-}
-
-header#cabeca > img {
-  margin-right: auto;
-}
-
 @media screen and (max-width: 600px) {
   #agendar {
     padding: 8px 16px;
@@ -83,17 +66,6 @@ header#cabeca > img {
     border-radius: 8px;
     animation: pulsar 2s ease-in-out infinite;
     margin-right: 10px;
-  }
-
-  #hamburguer button {
-    width: 40px;
-    height: 40px;
-    padding: 5px;
-  }
-
-  #hamburguer img {
-    width: 100%;
-    height: auto;
   }
 
   #cabeca {
