@@ -1,0 +1,127 @@
+@charset "UTF-8";
+
+/* =========================================================
+   CARROSSEL VERTICAL — cartões empilhados das colunas laterais
+   Cores, fontes e medidas vêm de css/variables.css.
+========================================================= */
+
+/* Tamanho do cartão: só --cv-w muda (a altura é 4:5 e o resto acompanha).
+   No celular css/style-home.css diminui --cv-w para caberem dois lado a lado. */
+.carousel-wrapper {
+  --cv-w: 196px;
+  --cv-h: calc(var(--cv-w) * 1.25);
+  width: 100%;
+  padding: 20px 10px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: calc(var(--cv-w) + 44px);
+  height: calc(var(--cv-h) * 1.8);
+  margin: 0 auto;
+  /* Sem perspective: os cartões só se movem em 2D, e no Safari (iPhone)
+     ela desenhava linhas rosa na borda de cima e no meio do carrossel. */
+  overflow: visible;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Sem transform-style: preserve-3d: os cartões só se movem em 2D, e no
+     Safari (iPhone) o modo 3D ignora o z-index (cartão de trás por cima
+     do da frente). */
+}
+
+.carousel-item {
+  position: absolute;
+  /* cartões "em pé" (4:5), para fotos e vídeos de celular */
+  width: var(--cv-w);
+  height: var(--cv-h);
+  border-radius: var(--raio-cartao);
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-midia-fundo);
+  box-shadow: 0 20px 40px rgba(var(--cor-sombra-rgb), .5);
+  /* Sem filter: blur nos cartões de trás: no Safari (iPhone) o desfoque
+     desenhava linhas rosa atravessando o carrossel. */
+  transition: transform .6s var(--curva-suave),
+              opacity .6s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.carousel-item:hover img,
+.carousel-item:hover video {
+  transform: scale(1.03);
+}
+
+.carousel-item img,
+.carousel-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+
+/* Posições relativas ao item ativo (data-pos) — cards atrás "espiando" em cima/embaixo */
+.carousel-item[data-pos="center"] {
+  transform: translateY(0) scale(1);
+  z-index: 6;
+  opacity: 1;
+}
+
+.carousel-item[data-pos="left1"] {
+  transform: translateY(calc(var(--cv-h) * -0.45)) scale(.85);
+  z-index: 5;
+  opacity: 1;
+}
+
+.carousel-item[data-pos="right1"] {
+  transform: translateY(calc(var(--cv-h) * 0.45)) scale(.85);
+  z-index: 5;
+  opacity: 1;
+}
+
+/* left2/right2 (só existem com 4 ou mais imagens) ficam escondidos como
+   "hidden": só aparecem o cartão da frente e um acima/abaixo dele */
+.carousel-item[data-pos="hidden"],
+.carousel-item[data-pos="left2"],
+.carousel-item[data-pos="right2"] {
+  transform: translateY(0) scale(.5);
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border: none;
+  padding: 0;
+  border-radius: var(--raio-pilula);
+  background: rgba(var(--cor-texto-rgb), .3);
+  cursor: pointer;
+  transition: width .3s var(--curva-suave), background .3s ease;
+}
+
+.dot.active {
+  width: 20px;
+  background: var(--cor-texto);
+}

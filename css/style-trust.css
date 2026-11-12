@@ -1,0 +1,641 @@
+@charset "UTF-8";
+
+/* =========================================================
+   CONFIANÇA (#sobre) — "Por que escolher a gente"
+   Conteúdo vem de js/config.js (confianca); os blocos são
+   montados por js/trust.js. Cores, fontes e raios vêm de
+   css/variables.css.
+========================================================= */
+
+.trust {
+  position: relative;
+  overflow: hidden;
+  background: var(--cor-fundo-confianca);
+  padding: 120px 25px 150px;
+  scroll-margin-top: var(--altura-header);
+}
+
+/* Circuitos ao fundo (js/main.js): ainda mais suaves que na vitrine,
+   surgindo e sumindo nas emendas com as seções vizinhas */
+.trust__network {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: var(--opacidade-circuitos-confianca);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--altura-esmaecimento-secao),
+    #000 calc(100% - var(--altura-esmaecimento-secao)), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 var(--altura-esmaecimento-secao),
+    #000 calc(100% - var(--altura-esmaecimento-secao)), transparent 100%);
+}
+
+.trust__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--largura-max-header);
+  margin: 0 auto;
+}
+
+/* =========================
+   TÍTULO E SUBTÍTULO
+   (mesmo estilo dos outros títulos de seção)
+========================= */
+.trust__title {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.08;
+  text-align: center;
+  color: var(--cor-texto);
+}
+
+.trust__subtitle {
+  max-width: 640px;
+  margin: 16px auto 88px;
+  text-align: center;
+  font-size: clamp(1.0625rem, 1.6vw, 1.3125rem);
+  line-height: 1.4;
+  color: var(--cor-texto-secundario);
+}
+
+.trust__blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 112px;
+}
+
+/* =========================
+   ELEMENTOS COMUNS DOS BLOCOS
+========================= */
+.trust-block__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.trust-block__title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--cor-texto);
+}
+
+/* Aviso de conteúdo fictício (exemplo: true na config) */
+.trust-block__example {
+  padding: 4px 12px;
+  border: 1px dashed rgba(var(--cor-texto-rgb), 0.35);
+  border-radius: var(--raio-pilula);
+  font-size: 0.75rem;
+  color: var(--cor-texto-secundario);
+}
+
+.trust-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--cor-icone);
+  background: rgba(var(--cor-destaque-rgb), 0.12);
+}
+
+.trust-icon svg,
+.trust-icon img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.trust-icon--large {
+  width: 52px;
+  height: 52px;
+}
+
+.trust-icon--large svg,
+.trust-icon--large img {
+  width: 24px;
+  height: 24px;
+}
+
+.trust ul,
+.trust ol {
+  list-style: none;
+}
+
+/* =========================
+   BLOCO 1 — QUEM SOMOS
+   Foto à esquerda, texto à direita; no celular a foto vem antes
+========================= */
+.trust-block--about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.trust-about__media {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--raio-tile);
+  overflow: hidden;
+}
+
+/* Espaço reservado quando confianca.quemSomos.foto está vazio */
+.trust-about__media--placeholder {
+  background: var(--cor-foto-reserva);
+}
+
+.trust-about__content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.trust-about__text {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--cor-texto-secundario);
+}
+
+.trust-about__list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 6px;
+}
+
+.trust-about__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.95rem;
+  color: var(--cor-texto);
+}
+
+/* =========================
+   BLOCO 2 — COMO FUNCIONA
+   Linha liga os números: horizontal no desktop, vertical no celular
+========================= */
+.trust-steps {
+  --step-size: 48px;
+  display: grid;
+  grid-template-columns: repeat(var(--steps, 4), 1fr);
+  gap: 24px;
+}
+
+.trust-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 0 8px;
+}
+
+/* Linha até o próximo passo */
+.trust-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--step-size) / 2);
+  left: calc(50% + var(--step-size) / 2 + 10px);
+  width: calc(100% + 24px - var(--step-size) - 20px);
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(var(--cor-destaque-rgb), 0.6),
+    rgba(var(--cor-destaque-rgb), 0.15)
+  );
+}
+
+.trust-step__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--step-size);
+  height: var(--step-size);
+  margin-bottom: 6px;
+  border-radius: 50%;
+  border: 1.5px solid var(--cor-icone);
+  color: var(--cor-icone);
+  font-family: var(--fonte-titulo);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.trust-step__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+.trust-step__text {
+  max-width: 240px;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--cor-texto-secundario);
+}
+
+/* =========================
+   BLOCO 3 — COMPROMISSOS
+========================= */
+.trust-commitments {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.trust-commitment {
+  flex: 1 1 260px;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 40px 28px;
+  border-radius: var(--raio-tile);
+  background: var(--cor-superficie);
+}
+
+.trust-commitment__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--cor-texto);
+}
+
+.trust-commitment__text {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--cor-texto-secundario);
+}
+
+/* =========================
+   OPCIONAL — NÚMEROS
+========================= */
+.trust-numbers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px 48px;
+  padding: 36px 24px;
+  border-top: 1px solid rgba(var(--cor-texto-rgb), 0.08);
+  border-bottom: 1px solid rgba(var(--cor-texto-rgb), 0.08);
+}
+
+.trust-number {
+  flex: 0 1 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+}
+
+.trust-number__value {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--cor-destaque);
+  font-variant-numeric: tabular-nums;
+}
+
+.trust-number__label {
+  font-size: 0.9rem;
+  color: rgba(var(--cor-texto-rgb), 0.65);
+}
+
+/* =========================
+   OPCIONAL — DEPOIMENTOS (liquid glass, css/glass.css)
+   O brilho atrás da grade dá ao vidro algo para distorcer
+========================= */
+.trust-block--testimonials {
+  position: relative;
+}
+
+.trust-block--testimonials::before {
+  content: "";
+  position: absolute;
+  inset: 20% 10% 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(var(--cor-destaque-rgb), 0.22) 0%,
+    rgba(var(--cor-destaque-secundaria-rgb), 0.08) 45%,
+    transparent 75%
+  );
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.trust-testimonials {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.trust-testimonial {
+  flex: 0 0 calc((100% - 48px) / 3);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px 24px;
+}
+
+.trust-stars {
+  display: flex;
+  gap: 4px;
+}
+
+.trust-star {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  color: rgba(var(--cor-texto-rgb), 0.25);
+}
+
+.trust-star svg {
+  width: 100%;
+  height: 100%;
+}
+
+.trust-star.is-filled {
+  color: var(--cor-estrela);
+}
+
+.trust-star.is-filled svg {
+  fill: currentColor;
+}
+
+.trust-testimonial__text {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(var(--cor-texto-rgb), 0.85);
+}
+
+.trust-testimonial__author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trust-testimonial__avatar {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.trust-testimonial__avatar--initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--cor-destaque-rgb), 0.25);
+  color: var(--cor-texto);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.trust-testimonial__who {
+  display: flex;
+  flex-direction: column;
+}
+
+.trust-testimonial__name {
+  font-size: 0.95rem;
+  color: var(--cor-texto);
+}
+
+.trust-testimonial__company {
+  font-size: 0.8rem;
+  color: rgba(var(--cor-texto-rgb), 0.55);
+}
+
+.trust-testimonials__link {
+  position: relative;
+  display: table;
+  margin: 32px auto 0;
+  font-size: 0.9rem;
+  color: var(--cor-texto);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* =========================
+   ENTRADA SUAVE AO ROLAR
+   Só com JS ativo (.trust--animate); js/trust.js nem ativa
+   quando o usuário prefere movimento reduzido.
+========================= */
+.trust--animate .trust-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s var(--curva-suave), transform 0.7s var(--curva-suave);
+}
+
+.trust--animate .trust-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trust--animate .trust-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+@media (max-width: 900px) {
+  .trust__blocks {
+    gap: 72px;
+  }
+
+  .trust-block--about {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .trust-testimonial {
+    flex-basis: calc((100% - 24px) / 2);
+  }
+}
+
+/* Passos na vertical: número à esquerda e linha descendo até o próximo */
+@media (max-width: 700px) {
+  .trust-steps {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .trust-step {
+    display: grid;
+    grid-template-columns: var(--step-size) 1fr;
+    column-gap: 18px;
+    row-gap: 4px;
+    align-items: start;
+    text-align: left;
+    padding: 0;
+  }
+
+  .trust-step__number {
+    grid-row: span 2;
+    margin-bottom: 0;
+  }
+
+  .trust-step__title {
+    padding-top: 12px;
+  }
+
+  .trust-step__text {
+    max-width: none;
+  }
+
+  .trust-step:not(:last-child)::after {
+    top: calc(var(--step-size) + 6px);
+    left: calc(var(--step-size) / 2 - 1px);
+    width: 1px;
+    height: calc(100% - var(--step-size) + 16px);
+    background: linear-gradient(
+      to bottom,
+      rgba(var(--cor-destaque-rgb), 0.6),
+      rgba(var(--cor-destaque-rgb), 0.15)
+    );
+  }
+}
+
+@media (max-width: 600px) {
+  .trust {
+    padding: 88px 18px 100px;
+  }
+
+  .trust__subtitle {
+    margin-bottom: 56px;
+  }
+
+  .trust__blocks {
+    gap: 80px;
+  }
+
+  .trust-testimonial {
+    flex-basis: 100%;
+  }
+
+  /* números em 2 x 2 */
+  .trust-numbers {
+    gap: 28px 12px;
+  }
+
+  .trust-number {
+    flex-basis: calc(50% - 6px);
+  }
+}
+
+/* =========================================================
+   BARBEARIA — volta ao preto depois da faixa branca dos serviços
+========================================================= */
+.trust__title {
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+}
+
+.trust-step__number {
+  border: none;
+  background: var(--cor-primaria);
+  color: var(--cor-texto-botao);
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.trust-icon {
+  background: transparent;
+  border: 1px solid rgba(var(--cor-destaque-rgb), 0.4);
+}
+
+.trust-commitment {
+  border: 1px solid var(--cor-borda);
+}
+
+.trust-testimonial__avatar--initials {
+  background: var(--cor-primaria);
+  color: var(--cor-texto-botao);
+}
+
+/* Celular: sem subtítulo e com os cards em linhas curtas (ícone ao lado do texto) */
+@media (max-width: 600px) {
+  .trust {
+    padding: 72px 16px 80px;
+  }
+
+  .trust__title {
+    text-align: left;
+  }
+
+  .trust__subtitle {
+    display: none;
+  }
+
+  .trust__blocks {
+    margin-top: 40px;
+    gap: 56px;
+  }
+
+  .trust-block__head {
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+
+  .trust-commitments {
+    gap: 10px;
+  }
+
+  .trust-commitment {
+    flex: 1 1 100%;
+    max-width: none;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    column-gap: 14px;
+    row-gap: 2px;
+    align-items: center;
+    text-align: left;
+    padding: 16px;
+  }
+
+  .trust-commitment .trust-icon {
+    grid-row: span 2;
+    width: 44px;
+    height: 44px;
+  }
+
+  .trust-commitment .trust-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .trust-commitment__title {
+    font-size: 1.0625rem;
+  }
+
+  .trust-commitment__text {
+    font-size: 0.875rem;
+  }
+}

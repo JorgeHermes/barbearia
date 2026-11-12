@@ -1,0 +1,20 @@
+# Cabeçalhos de segurança — Netlify e Cloudflare Pages leem este arquivo.
+# (Apache/Hostinger/Locaweb: use o .htaccess. Vercel: use o vercel.json.)
+# Ao trocar o vídeo do Cloudinary ou usar outro serviço externo,
+# libere o domínio dele na Content-Security-Policy abaixo.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  X-Frame-Options: DENY
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self' https://res.cloudinary.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+
+# CSS e JS: o navegador sempre confere se há versão nova antes de usar a
+# cópia guardada, para uma atualização do site nunca misturar arquivos
+# novos com antigos.
+/css/*
+  Cache-Control: no-cache
+
+/js/*
+  Cache-Control: no-cache

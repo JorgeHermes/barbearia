@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+/* =========================================================
+   LIQUID GLASS — efeito de vidro reutilizável
+   Use a classe .glass em qualquer painel/card. Depende do
+   filtro SVG #liquid-glass-distortion no início do index.html.
+   Cores e raio vêm de css/variables.css.
+========================================================= */
+
+/* <svg> que guarda o filtro: invisível e sem ocupar espaço.
+   Fica aqui (e não em style="") para a Content-Security-Policy
+   não precisar liberar estilos inline. */
+.svg-filtros {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.glass {
+  position: relative;
+  color: var(--cor-texto);
+  background: rgba(var(--cor-texto-rgb), 0.06);
+  border: 1px solid rgba(var(--cor-texto-rgb), 0.18);
+  border-radius: var(--raio-painel-vidro);
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow:
+    0 8px 32px rgba(var(--cor-sombra-rgb), 0.2),
+    inset 0 1px 1px rgba(var(--cor-texto-rgb), 0.35),
+    inset 0 -12px 24px rgba(var(--cor-sombra-rgb), 0.15);
+  backdrop-filter: blur(6px) saturate(160%);
+  -webkit-backdrop-filter: blur(6px) saturate(160%);
+}
+
+/* Distorção real de "liquid glass" via filtro SVG (feTurbulence + feDisplacementMap).
+   -webkit-touch-callout só existe em engines WebKit: usamos isso para excluir
+   Safari/iOS, onde backdrop-filter + url() não compõe de forma confiável, e
+   manter para eles o fallback simples acima. */
+@supports not (-webkit-touch-callout: none) {
+  .glass {
+    backdrop-filter: url(#liquid-glass-distortion) blur(2px) saturate(180%) brightness(1.05);
+    -webkit-backdrop-filter: url(#liquid-glass-distortion) blur(2px) saturate(180%) brightness(1.05);
+  }
+}
+
+/* Reflexo diagonal na borda superior */
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--cor-texto-rgb), 0.25) 0%,
+    rgba(var(--cor-texto-rgb), 0.08) 18%,
+    rgba(var(--cor-texto-rgb), 0) 40%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.glass > * {
+  position: relative;
+  z-index: 1;
+}

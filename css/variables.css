@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+/* =========================================================
+   VARIÁVEIS GLOBAIS — Barbearia Conexões de Máfia
+   Este é o ÚNICO lugar que deve ser editado para trocar
+   a identidade visual do site (cores, fontes, raios e medidas).
+   Identidade: preto, branco, cinza das silhuetas e o verde do AGENDAR.
+========================================================= */
+
+:root {
+
+  /* ---- CORES DE MARCA ----
+     --cor-primaria: botão AGENDAR (topo e menu mobile)
+     --cor-destaque: números dos passos, ícones e detalhes
+     As versões "-rgb" (sem "#", separadas por vírgula) existem para permitir
+     usar rgba(var(--cor-x-rgb), opacidade). Ao trocar uma cor, troque
+     também a versão "-rgb" com o mesmo valor. */
+  --cor-primaria: #00ff6a;
+  --cor-primaria-rgb: 0, 255, 106;
+  --cor-texto-botao: #000000;            /* texto sobre o verde */
+
+  --cor-destaque: #00ff6a;
+  --cor-destaque-rgb: 0, 255, 106;
+  --cor-destaque-secundaria-rgb: 46, 204, 113;
+
+  /* números dos passos, ícones e estrelas da seção de confiança */
+  --cor-icone: var(--cor-destaque);
+  --cor-estrela: var(--cor-destaque);
+
+  /* ---- CORES DE FUNDO ---- */
+  --cor-fundo: #000000;                  /* fundo do footer */
+  --cor-superficie: #121212;             /* cards da seção de confiança (sobre o preto) */
+  --cor-header-vidro: rgba(0, 0, 0, 0.72);    /* header translúcido */
+  --cor-header-vidro-aberto: rgba(0, 0, 0, 0.95); /* header com o menu mobile aberto */
+  --cor-fundo-pagina: #000000;           /* fundo geral da página e do hero */
+  --cor-fundo-agenda: #0b1d13;           /* faixa do agendamento: verde de mesa de sinuca, puxado do verde da marca */
+  --altura-transicao: 180px;             /* degradê nas emendas entre seções (preto <-> verde) */
+  --cor-fundo-confianca: #000000;        /* fundo da seção "Por que escolher a gente" */
+  --cor-fundo-hover: #1c1c1c;
+  --cor-foto-reserva: #262626;           /* bloco no lugar da foto do "Quem somos" enquanto não houver foto */
+  --cor-midia-fundo: #000000;            /* fundo do vídeo e das imagens dos cards */
+
+  /* ---- CORES DE TEXTO (sobre o preto e o verde-escuro) ---- */
+  --cor-texto: #f2f2f2;
+  --cor-texto-rgb: 242, 242, 242;
+  --cor-texto-secundario: #a6a6a6;       /* subtítulos, descrições e rodapé */
+  --cor-texto-suave: #cfcfcf;            /* texto corrido da história */
+  --cor-texto-hover: #ffffff;
+
+  /* ---- BORDAS E DIVISORES ---- */
+  --cor-borda: rgba(255, 255, 255, 0.1); /* linhas finas sobre o preto */
+  --cor-divisor: rgba(255, 255, 255, 0.2);
+  --cor-divisor-titulo: rgba(255, 255, 255, 0.2);
+
+  /* ---- SOMBRAS ---- */
+  --cor-sombra-rgb: 0, 0, 0;
+
+  /* ---- RAIOS DE BORDA ---- */
+  --raio-botao: 8px;
+  --raio-pilula: 8px;                    /* botões e selos */
+  --raio-tile: 8px;                      /* cards da vitrine e da confiança */
+  --raio-cartao: 8px;                    /* cartões dos carrosséis verticais */
+  --raio-cartao-midia: 8px;              /* vídeo central */
+  --raio-painel-vidro: 10px;             /* painéis com efeito liquid glass (css/glass.css) */
+
+  /* ---- MEDIDAS DE LAYOUT ---- */
+  --altura-header: 60px;
+  --largura-max-header: 1200px;          /* largura do conteúdo do header, das seções e do rodapé */
+
+  /* ---- MOVIMENTO ---- */
+  --curva-suave: cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  /* ---- FONTES ----
+     Lembre de atualizar também o <link> do Google Fonts no index.html. */
+  --fonte-base: 'Work Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fonte-titulo: 'Bebas Neue', 'Arial Narrow', sans-serif;   /* títulos das seções, no clima de cartaz */
+}

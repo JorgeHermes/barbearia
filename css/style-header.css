@@ -1,0 +1,215 @@
+@charset "UTF-8";
+
+/* =========================================================
+   HEADER — barra fixa do topo, menu desktop e menu mobile
+   Cores, fontes e medidas vêm de css/variables.css.
+========================================================= */
+
+/* Vidro translúcido: o conteúdo passa desfocado por trás do header */
+header {
+  margin: 0;
+  background-color: var(--cor-header-vidro);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+/* com o menu mobile aberto, o vidro fica quase opaco para os itens lerem bem */
+header:has(.mobile-menu.open) {
+  background-color: var(--cor-header-vidro-aberto);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--altura-header);
+  max-width: var(--largura-max-header);
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+}
+
+#brand-column {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+/* Logo: só a escrita "Conexões De Máfia" (imagens/logo-escrita.png, 7:1) */
+#brand-column img {
+  height: 18px;
+  width: auto;
+}
+
+/* Palavra ao lado do logo (empresa.tagline): Bebas, como os títulos */
+#tagline {
+  font-family: var(--fonte-titulo);
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: var(--cor-texto-secundario);
+  border-left: 1px solid var(--cor-divisor);
+  padding-left: 10px;
+}
+
+#nav-column {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+}
+
+#nav-column a {
+  font-size: 14px;
+  color: rgba(var(--cor-texto-rgb), 0.75);
+  padding: 6px 12px;
+  border-radius: var(--raio-botao);
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+#nav-column a:hover {
+  color: var(--cor-texto-hover);
+}
+
+#actions-column {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  z-index: 1;
+}
+
+/* AGENDAR: link para o agendamento online (empresa.agendamento em js/config.js).
+   O brilho pulsando vem do botão original da barbearia. */
+.btn-act {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--cor-primaria);
+  color: var(--cor-texto-botao);
+  border: none;
+  padding: 8px 18px;
+  border-radius: var(--raio-pilula);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: filter 0.2s;
+}
+
+.btn-act:hover {
+  filter: brightness(1.15);
+}
+
+#actions-column .btn-act {
+  animation: pulsar 2.4s ease-in-out infinite;
+}
+
+@keyframes pulsar {
+  0%   { box-shadow: 0 0 0 0 rgba(var(--cor-primaria-rgb), 0.45); }
+  70%  { box-shadow: 0 0 0 10px rgba(var(--cor-primaria-rgb), 0); }
+  100% { box-shadow: 0 0 0 0 rgba(var(--cor-primaria-rgb), 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #actions-column .btn-act {
+    animation: none;
+  }
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+  background: none;
+  border: none;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--cor-texto);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: transparent; /* usa o vidro do header */
+  padding: 0 1.25rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+/* Altura do menu aberto: a do conteúdo (--menu-altura, medida em
+   js/menu.js), limitada à tela abaixo do header; se não couber, rola */
+.mobile-menu.open {
+  /* +25px = espaçamento (12px em cima e embaixo) e borda do menu aberto */
+  max-height: min(calc(var(--menu-altura, 275px) + 25px), calc(100vh - var(--altura-header)));
+  overflow-y: auto;
+  padding: 12px 1.25rem;
+  border-top: 1px solid rgba(var(--cor-texto-rgb), 0.06);
+}
+
+.mobile-menu > a {
+  font-size: 17px;
+  font-weight: 500;
+  color: rgba(var(--cor-texto-rgb), 0.85);
+  padding: 12px 0;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--cor-texto-rgb), 0.08);
+  transition: color 0.2s;
+}
+
+.mobile-menu > a:hover { color: var(--cor-texto); }
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+/* Celular e tablet: links do centro saem e entra o hambúrguer.
+   (Até 1100px, porque abaixo disso os links encostam no logo.) */
+@media (max-width: 1100px) {
+  #nav-column { display: none; }
+  .hamburger { display: flex; }
+  .mobile-menu { display: flex; }
+}
+
+@media (max-width: 768px) {
+  .header-inner { padding: 0 1.25rem; }
+}
+
+@media (max-width: 480px) {
+  .header-inner { padding: 0 12px 0 16px; }
+  #brand-column { gap: 8px; }
+  #brand-column img { height: 16px; }
+  #tagline { font-size: 14px; padding-left: 8px; }
+  #actions-column { gap: 4px; }
+  #actions-column .btn-act { font-size: 13px; padding: 7px 12px; }
+}
+
+/* telas bem estreitas: a palavra sai para o logo e o Agendar caberem */
+@media (max-width: 359px) {
+  #tagline { display: none; }
+}

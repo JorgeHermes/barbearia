@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+/* =========================================================
+   FOOTER — rodapé com slogan, contato e suporte
+   Cores, fontes e medidas vêm de css/variables.css.
+========================================================= */
+
+footer {
+  border-top: 1px solid rgba(var(--cor-texto-rgb), 0.06);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  padding: 44px 0 0;
+}
+
+.footer-box {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  align-items: flex-start;
+  margin: 0 15%;
+  gap: 40px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+}
+
+#slogan-column { gap: 8px; }
+
+footer h2 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(var(--cor-texto-rgb), 0.85);
+  margin-bottom: 12px;
+}
+
+#slogan {
+  font-family: var(--fonte-titulo);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--cor-texto);
+  line-height: 1;
+  max-width: 260px;
+  margin-bottom: 0;
+}
+
+#slogan-sub {
+  font-size: 0.8125rem;
+  color: var(--cor-texto-secundario);
+}
+
+#instagram, #whatsapp {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  color: var(--cor-texto-secundario);
+  font-size: 0.8125rem;
+}
+
+#instagram img, #whatsapp img {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+
+#instagram a, #whatsapp a {
+  text-decoration: none;
+  color: var(--cor-texto-secundario);
+  transition: color 0.2s;
+}
+
+#instagram a:hover, #whatsapp a:hover { color: var(--cor-texto); }
+
+#support-column a {
+  font-size: 0.8125rem;
+  color: var(--cor-texto-secundario);
+  text-decoration: none;
+  margin-bottom: 8px;
+  transition: color 0.2s;
+  word-break: break-word;
+}
+
+#support-column a:hover { color: var(--cor-texto); }
+
+.footer-copy {
+  font-size: 0.75rem;
+  color: var(--cor-texto-secundario);
+  text-align: center;
+  margin: 32px 15% 0;
+  padding: 16px 0 20px;
+  border-top: 1px solid rgba(var(--cor-texto-rgb), 0.08);
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+@media (max-width: 768px) {
+  /* slogan ocupa a linha de cima; contato e suporte lado a lado */
+  .footer-box {
+    grid-template-columns: 1fr 1fr;
+    margin: 0 8%;
+    gap: 24px;
+  }
+
+  #slogan-column { grid-column: 1 / -1; }
+  #slogan { max-width: 100%; }
+
+  .footer-copy { margin: 24px 8% 0; }
+}
+
+/* Celular: só o essencial (nome, frase e contatos). O suporte do site fica no computador. */
+@media (max-width: 600px) {
+  .footer-box { grid-template-columns: 1fr; }
+  #support-column { display: none; }
+}
+
+@media (max-width: 480px) {
+  .footer-box {
+    grid-template-columns: 1fr;
+    margin: 0 6%;
+    gap: 20px;
+  }
+
+  footer { padding: 24px 0 0; }
+  #slogan { max-width: 100%; }
+  footer h2 { margin-bottom: 8px; }
+  #instagram img, #whatsapp img { width: 16px; height: 16px; }
+  /* links com área de toque maior no celular */
+  #instagram, #whatsapp { margin-bottom: 0; }
+  #instagram a, #whatsapp a { padding: 8px 0; margin-bottom: 0; }
+  .footer-copy { margin: 24px 6% 0; }
+}

@@ -1,0 +1,137 @@
+@charset "UTF-8";
+
+/* =========================================================
+   AGENDAMENTO (#agendamento) — faixa logo depois do vídeo
+   Os cortes, preços e horários ficam no site de agendamento;
+   aqui só a chamada para ele. Textos em js/config.js (agendamento).
+
+   Tom: verde-escuro de mesa de sinuca (--cor-fundo-agenda), que
+   nasce do preto do início e volta ao preto da seção de confiança
+   em degradê (--altura-transicao), sem linha seca entre as seções.
+========================================================= */
+
+.agenda {
+  position: relative;
+  overflow: hidden;
+  padding: calc(var(--altura-transicao) + 24px) 25px calc(var(--altura-transicao) + 32px);
+  scroll-margin-top: calc(var(--altura-header) - var(--altura-transicao) + 40px);
+  text-align: center;
+  background: linear-gradient(
+    to bottom,
+    var(--cor-fundo-pagina) 0,
+    var(--cor-fundo-agenda) var(--altura-transicao),
+    var(--cor-fundo-agenda) calc(100% - var(--altura-transicao)),
+    var(--cor-fundo-confianca) 100%
+  );
+}
+
+/* um foco de luz verde bem fraco atrás do texto, como a luz sobre a mesa */
+.agenda::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 45% 32% at 50% 50%, rgba(var(--cor-destaque-rgb), 0.07), transparent 70%);
+  pointer-events: none;
+}
+
+.agenda__inner {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.agenda__titulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 400;
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  color: var(--cor-texto);
+}
+
+.agenda__texto {
+  max-width: 46ch;
+  margin: 18px auto 0;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--cor-texto-suave);
+}
+
+.agenda__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+.agenda__botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 28px;
+  border-radius: var(--raio-botao);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: filter 0.2s, border-color 0.2s;
+}
+
+.agenda__botao--principal {
+  background: var(--cor-primaria);
+  color: var(--cor-texto-botao);
+}
+
+.agenda__botao--principal:hover {
+  filter: brightness(1.15);
+}
+
+.agenda__botao--secundario {
+  border: 1px solid rgba(var(--cor-texto-rgb), 0.35);
+  color: var(--cor-texto);
+}
+
+.agenda__botao--secundario:hover {
+  border-color: var(--cor-texto);
+}
+
+/* =========================
+   ENTRADA SUAVE AO ROLAR (js/main.js liga .agenda--animate;
+   desligada com "reduzir movimento")
+========================= */
+.agenda--animate .agenda__inner {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s var(--curva-suave), transform 0.7s var(--curva-suave);
+}
+
+.agenda--animate.is-visible .agenda__inner {
+  opacity: 1;
+  transform: none;
+}
+
+/* =========================
+   CELULAR: botões em largura total, um embaixo do outro
+========================= */
+@media (max-width: 600px) {
+  :root {
+    --altura-transicao: 80px;
+  }
+
+  .agenda {
+    padding-left: 18px;
+    padding-right: 18px;
+    text-align: left;
+  }
+
+  .agenda__texto {
+    margin-left: 0;
+    font-size: 1rem;
+  }
+
+  .agenda__acoes {
+    flex-direction: column;
+    margin-top: 28px;
+  }
+}

@@ -1,0 +1,299 @@
+@charset "UTF-8";
+
+/* =========================================================
+   HOME — hero (título e silhuetas), "Nossa história" e a fileira
+   carrossel vertical | vídeo horizontal | carrossel vertical.
+   Celular (até 900px): título, texto resumido, o vídeo e, embaixo
+   dele, os dois carrosséis verticais lado a lado.
+   Cores, fontes e medidas vêm de css/variables.css.
+========================================================= */
+
+.hero-main {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--cor-fundo-pagina);
+  padding: calc(var(--altura-header) + 40px) 25px 112px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 56px;
+}
+
+/* =========================
+   TÍTULO — silhuetas sob um foco de luz
+========================= */
+.hero-heading {
+  position: relative;
+  width: 100%;
+  max-width: 1040px;
+  aspect-ratio: 2006 / 858;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("../imagens/homens.png") center / contain no-repeat;
+  animation: sair-do-escuro 1.6s ease-out both;
+}
+
+/* o "poste de luz": por cima das silhuetas (mix-blend-mode: screen),
+   porque o fundo preto opaco de imagens/homens.png esconderia a luz atrás */
+.hero-heading::after {
+  content: "";
+  position: absolute;
+  inset: -20% -30%;
+  background: radial-gradient(ellipse 34% 46% at 50% 42%, rgba(255, 255, 255, 0.09), transparent 72%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.hero-title {
+  width: min(52%, 600px);
+  margin-bottom: 6%;
+}
+
+.hero-title img {
+  height: auto;
+}
+
+@keyframes sair-do-escuro {
+  from { opacity: 0; filter: brightness(0.2); }
+  to   { opacity: 1; filter: none; }
+}
+
+/* =========================
+   NOSSA HISTÓRIA
+========================= */
+.hero-historia {
+  width: 100%;
+  max-width: 680px;
+  scroll-margin-top: calc(var(--altura-header) + 24px);
+}
+
+.hero-historia__titulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: var(--cor-texto);
+  margin-bottom: 20px;
+}
+
+.hero-historia__texto {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--cor-texto-suave);
+}
+
+/* "Ler mais": só aparece no celular (js/main.js mostra quando o texto foi cortado) */
+.hero-historia__mais {
+  display: none;
+  margin-top: 10px;
+  padding: 8px 0;
+  background: none;
+  border: none;
+  font-family: var(--fonte-base);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--cor-texto);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+/* =========================
+   FILEIRA: carrossel | vídeo | carrossel
+========================= */
+.main-showcase {
+  width: 100%;
+  max-width: 1300px;
+  display: grid;
+  grid-template-columns: 240px 1fr 240px;
+  gap: 40px;
+  align-items: center;
+}
+
+.side-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.center-column {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+/* =========================
+   VÍDEO HORIZONTAL (16:9)
+========================= */
+.hero-video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--raio-cartao-midia);
+  overflow: hidden;
+  background: var(--cor-midia-fundo);
+  border: 1px solid var(--cor-borda);
+}
+
+.hero-video video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* vídeo inteiro, sem cortar as bordas */
+  pointer-events: auto;
+}
+
+/* Reserva enquanto o vídeo não chega */
+.hero-video__reserva {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-video__reserva img {
+  object-fit: contain;
+}
+
+.hero-video__aviso {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  padding: 5px 14px;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-primaria);
+  color: var(--cor-texto-botao);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-heading {
+    animation: none;
+  }
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+@media (max-width: 1150px) {
+  .main-showcase {
+    grid-template-columns: 200px 1fr 200px;
+    gap: 24px;
+  }
+}
+
+/* Celular e tablet: o vídeo ocupa a linha de cima e os dois carrosséis
+   verticais ficam lado a lado embaixo dele, com cartões menores. */
+@media (max-width: 900px) {
+  .hero-main {
+    padding: calc(var(--altura-header) + 8px) 20px 72px;
+    gap: 36px;
+  }
+
+  /* Título grande, como no DEVall: o bloco ocupa a largura inteira da tela
+     e fica bem mais alto. Cada silhueta vem de uma imagem própria com fundo
+     transparente (imagens/silhueta-*.png), presa à sua borda e com a altura
+     do bloco, então elas crescem sem serem cortadas pelo meio. */
+  .hero-heading {
+    width: calc(100% + 40px);
+    max-width: none;
+    margin: 0 -20px;
+    aspect-ratio: 16 / 11;
+    background:
+      url("../imagens/silhueta-esquerda.png") left -4% center / auto 92% no-repeat,
+      url("../imagens/silhueta-direita.png") right -4% center / auto 92% no-repeat;
+  }
+
+  /* o nome fica por cima das silhuetas: uma sombra preta o separa delas */
+  .hero-title {
+    position: relative;
+    z-index: 1;
+    width: 60%;
+    margin-bottom: 2%;
+    filter: drop-shadow(0 0 14px #000) drop-shadow(0 0 4px #000);
+  }
+
+  .main-showcase {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 12px;
+  }
+
+  .center-column {
+    grid-column: 1 / -1;
+    order: -1;
+    margin-bottom: 4px;
+  }
+
+  .side-column .carousel-wrapper {
+    --cv-w: min(196px, 36vw);
+    padding: 8px 0 0;
+  }
+
+  .side-column .dots {
+    margin-top: 12px;
+  }
+
+  .hero-historia__titulo {
+    text-align: left;
+    margin-bottom: 14px;
+  }
+
+  /* texto resumido: 5 linhas e "Ler mais" */
+  .hero-historia__texto {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    overflow: hidden;
+  }
+
+  .hero-historia.is-aberto .hero-historia__texto {
+    display: block;
+  }
+
+  .hero-historia__mais:not([hidden]) {
+    display: inline-block;
+  }
+}
+
+/* Celular: o nome no meio e as silhuetas nos cantos, cortadas pela borda
+   da tela (aparece só a parte de dentro: rosto e aba do chapéu), para
+   sobrar espaço ao nome sem ele ficar por cima delas.
+   Conta: cada silhueta tem ~0,53 x a altura dela; com 86% da altura do bloco
+   (que é quadrado e da largura da tela) ela mede ~46vw. -24vw esconde ~52%
+   de cada uma e deixa ~56% da largura livre no meio para o nome. */
+@media (max-width: 600px) {
+  .hero-heading {
+    aspect-ratio: 1 / 1;
+    background-position: left -24vw center, right -24vw center;
+    background-size: auto 86%, auto 86%;
+  }
+
+  /* titulo.png tem margem transparente (as letras ocupam ~76% dela):
+     com 74% do bloco as letras ficam com ~56% da largura, dentro do vão */
+  .hero-title {
+    width: 74%;
+    margin-bottom: 16%; /* sobe o nome em relação ao centro do bloco */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-main {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .hero-heading {
+    width: calc(100% + 36px);
+    margin: 0 -18px;
+  }
+
+  .hero-historia__texto {
+    font-size: 1rem;
+  }
+}
