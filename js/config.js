@@ -18,7 +18,7 @@ window.SITE_CONFIG = {
   empresa: {
     nome: 'Barbearia Conexões de Máfia',
     tituloAba: 'Barbearia Conexões de Máfia',   // texto da aba do navegador
-    tagline: 'Visagismo',                       // palavra ao lado do logo no topo
+    tagline: 'Estética',                      // palavra ao lado do logo no topo
     slogan: 'Conexões de Máfia',                // rodapé (título)
     subSlogan: 'Agende seu horário online, a qualquer hora.',   // rodapé (abaixo do slogan)
     agendamento: {
@@ -101,24 +101,24 @@ window.SITE_CONFIG = {
     /* Passos numerados, na ordem em que acontecem (3 a 4) */
     comoFunciona: {
       ativo: true,
-      exemplo: true,
+      exemplo: false,
       titulo: 'Como funciona',
       passos: [
-        { titulo: 'Agende', descricao: 'Escolha o dia e o horário pelo botão Agendar.' },
-        { titulo: 'Chegue', descricao: 'Seu horário fica reservado para você.' },
-        { titulo: 'Aprove', descricao: 'Só terminamos quando você gostar do resultado.' },
+        { titulo: 'Agende pelo app', descricao: 'Escolha o serviço, o barbeiro e o horário no AppBarber.' },
+        { titulo: 'Chegue no horário', descricao: 'Sem fila: seu barbeiro já está te esperando.' },
+        { titulo: 'Saia no estilo', descricao: 'Corte, barba e sobrancelha finalizados com cuidado.' },
       ],
     },
 
     /* Cards com ícone, título e uma linha de texto (2 a 3) */
     compromissos: {
       ativo: true,
-      exemplo: true,
+      exemplo: false,
       titulo: 'Nossos compromissos',
       itens: [
-        { icone: 'relogio', titulo: 'Pontualidade', texto: 'Atendimento no horário marcado.' },
-        { icone: 'escudo',  titulo: 'Higiene',      texto: 'Material limpo e esterilizado a cada cliente.' },
-        { icone: 'estrela', titulo: 'Acabamento',   texto: 'Atenção aos detalhes do começo ao fim.' },
+        { icone: 'estrela', titulo: 'Nota 4,9 no Google',      texto: '39 avaliações de clientes.' },   // atualize de vez em quando
+        { icone: 'check',   titulo: 'Você escolhe o barbeiro', texto: 'Agende com quem você já confia.' },
+        { icone: 'pincel',  titulo: 'Do fade à química',       texto: 'Fades, barba, sobrancelha, luzes e platinado.' },
       ],
     },
 
