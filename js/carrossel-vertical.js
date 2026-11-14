@@ -51,11 +51,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Enquanto não chega à frente o vídeo nem é baixado,
     // porque o HTML usa preload="none".
     let naTela = true;
+    let ultimo = -1;
     function tocarVideos() {
       const visivel = naTela && root.offsetParent !== null;
+      const chegou = current !== ultimo;
+      ultimo = current;
       items.forEach((item, i) => {
         const video = item.querySelector('video');
         if (!video) return;
+        // vídeo que acabou de vir para a frente começa do início
+        if (i === current && chegou && video.currentTime > 0) video.currentTime = 0;
         // O próximo cartão já começa a baixar, para não travar quando chegar à frente.
         if (visivel && i === mod(current + 1, total) && video.preload === 'none') video.preload = 'auto';
         if (i === current && visivel) video.play().catch(() => {});
@@ -76,13 +81,22 @@ document.addEventListener('DOMContentLoaded', () => {
       item.addEventListener('click', () => { current = i; update(); resetAutoplay(); });
     });
 
+    // Foto fica INTERVALO na frente; vídeo fica até terminar (ex.: o antes e depois).
     function startAutoplay(){
-      autoplayTimer = setInterval(next, INTERVALO);
+      clearTimeout(autoplayTimer);
+      const video = items[current].querySelector('video');
+      const espera = video ? Math.max(INTERVALO, (video.duration || 7) * 1000) : INTERVALO;
+      autoplayTimer = setTimeout(() => { next(); startAutoplay(); }, espera);
     }
     function resetAutoplay(){
-      clearInterval(autoplayTimer);
       startAutoplay();
     }
+
+    // a duração só é conhecida depois que o vídeo começa a baixar
+    items.forEach((item, i) => {
+      const video = item.querySelector('video');
+      if (video) video.addEventListener('loadedmetadata', () => { if (i === current) startAutoplay(); });
+    });
 
     update();
     startAutoplay();

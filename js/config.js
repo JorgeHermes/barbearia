@@ -60,8 +60,8 @@ window.SITE_CONFIG = {
   historia: {
     titulo: 'Nossa história',
     texto: 'Texto de exemplo. Conte aqui, em duas ou três frases, como a barbearia começou: quem abriu, quando e o que faz o atendimento de vocês ser diferente.',
-    foto: 'imagens/instagram/equipe-historia.jpg',
-    fotoAlt: 'Equipe da Barbearia Conexões De Máfia em frente à barbearia, com o punho erguido',
+    foto: 'imagens/historia.jpg',
+    fotoAlt: 'Os cinco barbeiros da Conexões de Máfia de camisa azul do uniforme, entre colunas de balões dourados e pretos',
   },
 
   /* ---------- Agendamento ----------

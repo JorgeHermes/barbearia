@@ -1,71 +1,98 @@
 /* =====================================================================
    GALERIA DO CELULAR (até 900px) — montada por js/galeria-mobile.js
-   Uma faixa de cartões 4:5 deslizada com o dedo. O cartão do meio fica
-   inteiro e aceso; os vizinhos aparecem pela borda, um pouco apagados,
-   mostrando que dá para arrastar.
+   Carrossel em leque, no mesmo estilo do site da DEVall: o cartão do
+   centro fica inteiro na frente e os vizinhos aparecem atrás, menores,
+   dos dois lados, esmaecendo nas bordas da tela. Gira sem fim.
    ===================================================================== */
 .galeria-mobile {
   display: none;
 }
 
 @media (max-width: 900px) {
-  /* os dois carrosséis verticais saem; a faixa entra no lugar deles */
+  /* os dois carrosséis verticais saem; o leque entra no lugar deles */
   .main-showcase .side-column {
     display: none;
   }
 
   .galeria-mobile {
-    --gm-w: min(74vw, 360px);      /* largura do cartão */
-    --gm-gap: 12px;
+    --gm-w: min(58vw, 320px);      /* largura do cartão do centro */
     --gm-borda: 20px;              /* igual ao respiro lateral da página */
+    --gm-folga: 28px;              /* sobra em cima e embaixo para a sombra */
     display: block;
     grid-column: 1 / -1;
-    /* a faixa vai de uma borda da tela à outra */
-    margin: 4px calc(var(--gm-borda) * -1) 0;
+    /* vai de uma borda da tela à outra. Espaço até o vídeo:
+       8px da grade + 16px daqui + a folga da sombra = 52px */
+    margin: 16px calc(var(--gm-borda) * -1) 0;
     min-width: 0;
   }
 
-  .galeria-mobile__trilho {
+  .galeria-mobile__palco {
+    position: relative;
+    height: calc(var(--gm-w) * 1.25 + var(--gm-folga) * 2);
     display: flex;
-    gap: var(--gm-gap);
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    /* espaço nas pontas para o primeiro e o último também pararem no centro */
-    padding: 6px calc((100% - var(--gm-w)) / 2) 10px;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* cartões das pontas esmaecem até sumir */
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
+    /* arraste para o lado troca o cartão; para cima e para baixo rola a página */
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
-  .galeria-mobile__trilho::-webkit-scrollbar {
-    display: none;
-  }
-
-  .galeria-mobile__trilho:focus-visible {
+  .galeria-mobile__palco:focus-visible {
     outline: 2px solid var(--cor-destaque);
     outline-offset: -2px;
   }
 
   .galeria-mobile__cartao {
-    position: relative;
-    flex: 0 0 var(--gm-w);
+    position: absolute;
+    width: var(--gm-w);
     aspect-ratio: 4 / 5;
     margin: 0;
-    scroll-snap-align: center;
-    scroll-snap-stop: always;      /* um cartão por gesto, sem pular vários */
     border-radius: var(--raio-cartao);
     overflow: hidden;
     background: var(--cor-midia-fundo);
     border: 1px solid var(--cor-borda);
-    opacity: .45;
-    transform: scale(.94);
-    transition: opacity .35s ease, transform .35s var(--curva-suave, ease);
+    box-shadow: 0 18px 36px rgba(var(--cor-sombra-rgb), .5);
+    cursor: pointer;
+    transition: transform .6s var(--curva-suave, ease), opacity .6s ease;
   }
 
-  .galeria-mobile__cartao.is-ativo {
-    opacity: 1;
+  /* posições em relação ao cartão do centro (data-pos, definido no JS) */
+  .galeria-mobile__cartao[data-pos="centro"] {
     transform: none;
-    box-shadow: 0 18px 36px rgba(var(--cor-sombra-rgb), .55);
+    z-index: 6;
+    cursor: default;
+  }
+
+  .galeria-mobile__cartao[data-pos="esq1"] {
+    transform: translateX(-58%) scale(.84);
+    z-index: 5;
+  }
+
+  .galeria-mobile__cartao[data-pos="dir1"] {
+    transform: translateX(58%) scale(.84);
+    z-index: 5;
+  }
+
+  .galeria-mobile__cartao[data-pos="esq2"] {
+    transform: translateX(-100%) scale(.68);
+    z-index: 2;
+  }
+
+  .galeria-mobile__cartao[data-pos="dir2"] {
+    transform: translateX(100%) scale(.68);
+    z-index: 2;
+  }
+
+  .galeria-mobile__cartao[data-pos="oculto"] {
+    transform: scale(.5);
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
   }
 
   .galeria-mobile__cartao img,
@@ -74,6 +101,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    pointer-events: none;          /* o toque é do cartão, não da mídia */
+    -webkit-user-drag: none;
   }
 
   /* selo de vídeo no canto, como no Instagram */
@@ -91,12 +120,12 @@
     pointer-events: none;
   }
 
-  /* indicador: o ponto do cartão atual vira um traço */
+  /* indicador: o ponto do cartão atual vira uma pílula */
   .galeria-mobile__pontos {
     display: flex;
     justify-content: center;
-    gap: 6px;
-    margin-top: 10px;
+    gap: 2px;
+    margin-top: -6px;
   }
 
   .galeria-mobile__ponto {
@@ -121,7 +150,7 @@
   }
 
   .galeria-mobile__ponto.is-ativo::before {
-    width: 20px;
+    width: 22px;
     background: var(--cor-destaque);
   }
 
@@ -135,11 +164,5 @@
 @media (max-width: 480px) {
   .galeria-mobile {
     --gm-borda: 18px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .galeria-mobile__cartao {
-    transition: none;
   }
 }
