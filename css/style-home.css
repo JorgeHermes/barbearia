@@ -203,8 +203,9 @@
   }
 }
 
-/* Celular e tablet: o vídeo ocupa a linha de cima e os dois carrosséis
-   verticais ficam lado a lado embaixo dele, com cartões menores. */
+/* Celular e tablet: o vídeo ocupa a linha de cima e, embaixo dele, os
+   carrosséis verticais dão lugar a uma faixa deslizável
+   (css/galeria-mobile.css + js/galeria-mobile.js). */
 @media (max-width: 900px) {
   .hero-main {
     padding: calc(var(--altura-header) + 8px) 20px 72px;

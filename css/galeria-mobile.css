@@ -1,0 +1,145 @@
+/* =====================================================================
+   GALERIA DO CELULAR (até 900px) — montada por js/galeria-mobile.js
+   Uma faixa de cartões 4:5 deslizada com o dedo. O cartão do meio fica
+   inteiro e aceso; os vizinhos aparecem pela borda, um pouco apagados,
+   mostrando que dá para arrastar.
+   ===================================================================== */
+.galeria-mobile {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  /* os dois carrosséis verticais saem; a faixa entra no lugar deles */
+  .main-showcase .side-column {
+    display: none;
+  }
+
+  .galeria-mobile {
+    --gm-w: min(74vw, 360px);      /* largura do cartão */
+    --gm-gap: 12px;
+    --gm-borda: 20px;              /* igual ao respiro lateral da página */
+    display: block;
+    grid-column: 1 / -1;
+    /* a faixa vai de uma borda da tela à outra */
+    margin: 4px calc(var(--gm-borda) * -1) 0;
+    min-width: 0;
+  }
+
+  .galeria-mobile__trilho {
+    display: flex;
+    gap: var(--gm-gap);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    /* espaço nas pontas para o primeiro e o último também pararem no centro */
+    padding: 6px calc((100% - var(--gm-w)) / 2) 10px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .galeria-mobile__trilho::-webkit-scrollbar {
+    display: none;
+  }
+
+  .galeria-mobile__trilho:focus-visible {
+    outline: 2px solid var(--cor-destaque);
+    outline-offset: -2px;
+  }
+
+  .galeria-mobile__cartao {
+    position: relative;
+    flex: 0 0 var(--gm-w);
+    aspect-ratio: 4 / 5;
+    margin: 0;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;      /* um cartão por gesto, sem pular vários */
+    border-radius: var(--raio-cartao);
+    overflow: hidden;
+    background: var(--cor-midia-fundo);
+    border: 1px solid var(--cor-borda);
+    opacity: .45;
+    transform: scale(.94);
+    transition: opacity .35s ease, transform .35s var(--curva-suave, ease);
+  }
+
+  .galeria-mobile__cartao.is-ativo {
+    opacity: 1;
+    transform: none;
+    box-shadow: 0 18px 36px rgba(var(--cor-sombra-rgb), .55);
+  }
+
+  .galeria-mobile__cartao img,
+  .galeria-mobile__cartao video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* selo de vídeo no canto, como no Instagram */
+  .galeria-mobile__cartao--video::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 7.5v9l7.5-4.5z' fill='%23fff'/%3E%3C/svg%3E") center / 18px no-repeat,
+      rgba(0, 0, 0, .55);
+    pointer-events: none;
+  }
+
+  /* indicador: o ponto do cartão atual vira um traço */
+  .galeria-mobile__pontos {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .galeria-mobile__ponto {
+    /* área de toque de 24px, ponto visível de 8px */
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+  }
+
+  .galeria-mobile__ponto::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: var(--raio-pilula);
+    background: rgba(var(--cor-texto-rgb), .3);
+    transition: width .3s var(--curva-suave, ease), background .3s ease;
+  }
+
+  .galeria-mobile__ponto.is-ativo::before {
+    width: 20px;
+    background: var(--cor-destaque);
+  }
+
+  .galeria-mobile__ponto:focus-visible {
+    outline: 2px solid var(--cor-destaque);
+    outline-offset: 2px;
+    border-radius: var(--raio-pilula);
+  }
+}
+
+@media (max-width: 480px) {
+  .galeria-mobile {
+    --gm-borda: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .galeria-mobile__cartao {
+    transition: none;
+  }
+}

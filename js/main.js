@@ -36,13 +36,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =====================================================================
-   VÍDEO HORIZONTAL: toca sozinho (sem som) e em loop. Para quem prefere
-   menos movimento ele não começa sozinho: fica a capa e os controles.
+   VÍDEO HORIZONTAL: toca sozinho (sem som), em loop e sem barra de
+   controles. Pausa fora da tela, para não gastar bateria nem dados.
    ===================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
   const video = document.querySelector('.hero-video video');
-  if (!video || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  video.removeAttribute('autoplay');
-  video.pause();
-  video.controls = true;
+  if (!video) return;
+  video.muted = true;
+  video.controls = false;
+  video.disablePictureInPicture = true;
+  const tocar = () => video.play().catch(() => {});
+  tocar();
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([e]) => (e.isIntersecting ? tocar() : video.pause()), { threshold: 0.25 }).observe(video);
+  }
 });
