@@ -559,7 +559,7 @@
 
 .trust-step__number {
   border: none;
-  background: var(--cor-primaria);
+  background: var(--cor-destaque);
   color: var(--cor-texto-botao);
   font-family: var(--fonte-titulo);
   font-size: 1.5rem;
@@ -576,7 +576,7 @@
 }
 
 .trust-testimonial__avatar--initials {
-  background: var(--cor-primaria);
+  background: var(--cor-destaque);
   color: var(--cor-texto-botao);
 }
 

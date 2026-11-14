@@ -56,6 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
       items.forEach((item, i) => {
         const video = item.querySelector('video');
         if (!video) return;
+        // O próximo cartão já começa a baixar, para não travar quando chegar à frente.
+        if (visivel && i === mod(current + 1, total) && video.preload === 'none') video.preload = 'auto';
         if (i === current && visivel) video.play().catch(() => {});
         else video.pause();
       });

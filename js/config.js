@@ -22,7 +22,7 @@ window.SITE_CONFIG = {
     slogan: 'Conexões de Máfia',                // rodapé (título)
     subSlogan: 'Agende seu horário online, a qualquer hora.',   // rodapé (abaixo do slogan)
     agendamento: {
-      texto: 'Agendar',                         // botão verde do topo
+      texto: 'Agendar',                         // botão dourado do topo
       url: 'https://sites.appbarber.com.br/barbeariaconexa-fv4w',
     },
     instagram: {
@@ -51,11 +51,17 @@ window.SITE_CONFIG = {
     ],
   },
 
-  /* ---------- Texto do início ----------
-     No celular aparecem só as primeiras linhas, com o botão "Ler mais". */
+  /* ---------- Nossa história ----------
+     Duas ou três frases reais sobre o começo da barbearia, com uma foto do
+     dono ou do espaço ao lado (no celular, a foto fica em cima do texto).
+     - foto:    caminho da imagem, ex.: 'imagens/dono.jpg' (em pé, 4:5, mínimo 800x1000).
+                Enquanto estiver '', um bloco escuro reserva o lugar.
+     - fotoAlt: descreva a foto, ex.: 'Fulano, dono da barbearia, na cadeira de corte' */
   historia: {
     titulo: 'Nossa história',
-    texto: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda quae quidem odit possimus accusamus porro voluptate error id quam, sed quos atque numquam totam nemo animi illum reprehenderit sit quaerat. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, consequuntur dolorem eveniet rem vel perferendis quos officiis assumenda, asperiores veritatis facilis est adipisci repudiandae placeat perspiciatis ea deleniti tempora in! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat soluta vitae quos consequatur pariatur magnam voluptates maiores molestias voluptatum architecto, asperiores unde neque fugiat odio accusantium similique iusto velit dolorem? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis explicabo quas consequatur quia, illo labore assumenda ut. Nemo placeat rerum in obcaecati quod ea maiores veritatis hic, ducimus eius maxime?',
+    texto: 'Texto de exemplo. Conte aqui, em duas ou três frases, como a barbearia começou: quem abriu, quando e o que faz o atendimento de vocês ser diferente.',
+    foto: 'imagens/instagram/equipe-historia.jpg',
+    fotoAlt: 'Equipe da Barbearia Conexões De Máfia em frente à barbearia, com o punho erguido',
   },
 
   /* ---------- Agendamento ----------

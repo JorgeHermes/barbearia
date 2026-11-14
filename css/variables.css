@@ -4,24 +4,32 @@
    VARIÁVEIS GLOBAIS — Barbearia Conexões de Máfia
    Este é o ÚNICO lugar que deve ser editado para trocar
    a identidade visual do site (cores, fontes, raios e medidas).
-   Identidade: preto, branco, cinza das silhuetas e o verde do AGENDAR.
+   Identidade: preto, branco, cinza das silhuetas e o dourado da marca.
 ========================================================= */
 
 :root {
 
   /* ---- CORES DE MARCA ----
-     --cor-primaria: botão AGENDAR (topo e menu mobile)
+     A cor da marca é o dourado (--cor-dourado). As demais apontam para ele:
+     --cor-primaria: botões de ação (Agendar do topo e "Abrir agendamento")
      --cor-destaque: números dos passos, ícones e detalhes
+     Para trocar a cor do site inteiro, mude só --cor-dourado e --cor-dourado-rgb.
      As versões "-rgb" (sem "#", separadas por vírgula) existem para permitir
      usar rgba(var(--cor-x-rgb), opacidade). Ao trocar uma cor, troque
      também a versão "-rgb" com o mesmo valor. */
-  --cor-primaria: #00ff6a;
-  --cor-primaria-rgb: 0, 255, 106;
-  --cor-texto-botao: #000000;            /* texto sobre o verde */
+  --cor-dourado: #d4af37;
+  --cor-dourado-rgb: 212, 175, 55;
 
-  --cor-destaque: #00ff6a;
-  --cor-destaque-rgb: 0, 255, 106;
-  --cor-destaque-secundaria-rgb: 46, 204, 113;
+  --cor-primaria: var(--cor-dourado);
+  --cor-primaria-rgb: var(--cor-dourado-rgb);
+  --cor-texto-botao: #000000;            /* texto sobre o dourado */
+
+  --cor-destaque: var(--cor-dourado);
+  --cor-destaque-rgb: var(--cor-dourado-rgb);
+  --cor-destaque-secundaria-rgb: 166, 124, 26;
+  /* Dourado metálico do título "Nossa história": claro em cima, escuro
+     embaixo, como metal sob luz (usado como "tinta" das letras). */
+  --dourado-metalico: linear-gradient(180deg, #f7e7a1 0%, #e2c160 38%, #c9a032 62%, #9c7618 100%);
 
   /* números dos passos, ícones e estrelas da seção de confiança */
   --cor-icone: var(--cor-destaque);
@@ -33,14 +41,14 @@
   --cor-header-vidro: rgba(0, 0, 0, 0.72);    /* header translúcido */
   --cor-header-vidro-aberto: rgba(0, 0, 0, 0.95); /* header com o menu mobile aberto */
   --cor-fundo-pagina: #000000;           /* fundo geral da página e do hero */
-  --cor-fundo-agenda: #0b1d13;           /* faixa do agendamento: verde de mesa de sinuca, puxado do verde da marca */
-  --altura-transicao: 180px;             /* degradê nas emendas entre seções (preto <-> verde) */
+  --cor-fundo-agenda: #1a1407;           /* faixa do agendamento: bronze bem escuro, puxado do dourado da marca */
+  --altura-transicao: 180px;             /* degradê nas emendas entre seções (preto <-> bronze) */
   --cor-fundo-confianca: #000000;        /* fundo da seção "Por que escolher a gente" */
   --cor-fundo-hover: #1c1c1c;
   --cor-foto-reserva: #262626;           /* bloco no lugar da foto do "Quem somos" enquanto não houver foto */
   --cor-midia-fundo: #000000;            /* fundo do vídeo e das imagens dos cards */
 
-  /* ---- CORES DE TEXTO (sobre o preto e o verde-escuro) ---- */
+  /* ---- CORES DE TEXTO (sobre o preto e o bronze escuro) ---- */
   --cor-texto: #f2f2f2;
   --cor-texto-rgb: 242, 242, 242;
   --cor-texto-secundario: #a6a6a6;       /* subtítulos, descrições e rodapé */

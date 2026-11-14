@@ -45,3 +45,13 @@ img {
   user-select: none;
   pointer-events: none;
 }
+
+/* Título "Nossa história" em dourado metálico (--dourado-metalico em
+   css/variables.css). Sem suporte a background-clip, fica o dourado liso. */
+.hero-historia__titulo {
+  color: var(--cor-dourado);
+  background-image: var(--dourado-metalico);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

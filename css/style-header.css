@@ -97,7 +97,7 @@ header:has(.mobile-menu.open) {
   justify-content: center;
   font-size: 14px;
   font-weight: 600;
-  background: var(--cor-primaria);
+  background: var(--cor-dourado);
   color: var(--cor-texto-botao);
   border: none;
   padding: 8px 18px;
@@ -117,9 +117,9 @@ header:has(.mobile-menu.open) {
 }
 
 @keyframes pulsar {
-  0%   { box-shadow: 0 0 0 0 rgba(var(--cor-primaria-rgb), 0.45); }
-  70%  { box-shadow: 0 0 0 10px rgba(var(--cor-primaria-rgb), 0); }
-  100% { box-shadow: 0 0 0 0 rgba(var(--cor-primaria-rgb), 0); }
+  0%   { box-shadow: 0 0 0 0 rgba(var(--cor-dourado-rgb), 0.45); }
+  70%  { box-shadow: 0 0 0 10px rgba(var(--cor-dourado-rgb), 0); }
+  100% { box-shadow: 0 0 0 0 rgba(var(--cor-dourado-rgb), 0); }
 }
 
 @media (prefers-reduced-motion: reduce) {

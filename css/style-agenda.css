@@ -5,7 +5,7 @@
    Os cortes, preços e horários ficam no site de agendamento;
    aqui só a chamada para ele. Textos em js/config.js (agendamento).
 
-   Tom: verde-escuro de mesa de sinuca (--cor-fundo-agenda), que
+   Tom: bronze bem escuro (--cor-fundo-agenda), puxado do dourado, que
    nasce do preto do início e volta ao preto da seção de confiança
    em degradê (--altura-transicao), sem linha seca entre as seções.
 ========================================================= */
@@ -25,12 +25,12 @@
   );
 }
 
-/* um foco de luz verde bem fraco atrás do texto, como a luz sobre a mesa */
+/* um foco de luz dourada bem fraco atrás do texto, como a luz sobre a mesa */
 .agenda::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 45% 32% at 50% 50%, rgba(var(--cor-destaque-rgb), 0.07), transparent 70%);
+  background: radial-gradient(ellipse 45% 32% at 50% 50%, rgba(var(--cor-dourado-rgb), 0.2), transparent 70%);
   pointer-events: none;
 }
 

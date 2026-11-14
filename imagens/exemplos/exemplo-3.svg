@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Imagem de exemplo: Vídeo">
   <rect width="400" height="500" fill="#101010"/>
-  <rect x="14" y="14" width="372" height="472" fill="none" stroke="#00ff6a" stroke-opacity=".55" stroke-width="2"/>
+  <rect x="14" y="14" width="372" height="472" fill="none" stroke="#d4af37" stroke-opacity=".55" stroke-width="2"/>
   <text x="200" y="245" text-anchor="middle" font-family="system-ui, Segoe UI, Arial, sans-serif" font-size="44" font-weight="700" fill="#ffffff">Vídeo</text>
   <text x="200" y="285" text-anchor="middle" font-family="system-ui, Segoe UI, Arial, sans-serif" font-size="18" fill="#9a9a9a">imagem de exemplo</text>
 </svg>

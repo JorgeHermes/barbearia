@@ -100,11 +100,16 @@
       </h1>
     </div>
 
-    <!-- Texto: js/config.js (historia). No celular aparece resumido, com "Ler mais". -->
+    <!-- Nossa história: foto do dono ou do espaço + duas ou três frases.
+         Textos e foto em js/config.js (historia). Sem foto, um bloco reserva o lugar. -->
     <div class="hero-historia" id="historia">
-      <h2 class="hero-historia__titulo" data-config="historia.titulo">Nossa história</h2>
-      <p class="hero-historia__texto" id="historia-texto" data-config="historia.texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda quae quidem odit possimus accusamus porro voluptate error id quam, sed quos atque numquam totam nemo animi illum reprehenderit sit quaerat. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, consequuntur dolorem eveniet rem vel perferendis quos officiis assumenda, asperiores veritatis facilis est adipisci repudiandae placeat perspiciatis ea deleniti tempora in! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat soluta vitae quos consequatur pariatur magnam voluptates maiores molestias voluptatum architecto, asperiores unde neque fugiat odio accusantium similique iusto velit dolorem? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis explicabo quas consequatur quia, illo labore assumenda ut. Nemo placeat rerum in obcaecati quod ea maiores veritatis hic, ducimus eius maxime?</p>
-      <button class="hero-historia__mais" type="button" aria-expanded="false" aria-controls="historia-texto" hidden>Ler mais</button>
+      <figure class="hero-historia__foto" id="historia-foto">
+        <span class="hero-historia__reserva">Foto do dono ou do espaço</span>
+      </figure>
+      <div class="hero-historia__conteudo">
+        <h2 class="hero-historia__titulo" data-config="historia.titulo">Nossa história</h2>
+        <p class="hero-historia__texto" data-config="historia.texto">Texto de exemplo. Conte aqui, em duas ou três frases, como a barbearia começou: quem abriu, quando e o que faz o atendimento de vocês ser diferente.</p>
+      </div>
     </div>
 
     <!-- Fileira: carrossel vertical | vídeo horizontal | carrossel vertical.
@@ -121,13 +126,13 @@
             <div class="carousel-container">
               <div class="carousel">
                 <div class="carousel-item">
-                  <img loading="lazy" src="imagens/exemplos/exemplo-1.svg" alt="Imagem de exemplo 1">
+                  <img loading="lazy" src="imagens/instagram/corte-1.jpg" alt="Cliente com degradê e topo crespo definido">
                 </div>
                 <div class="carousel-item">
-                  <img loading="lazy" src="imagens/exemplos/exemplo-2.svg" alt="Imagem de exemplo 2">
+                  <video src="videos/maquina.mp4" poster="imagens/instagram/capa-maquina.jpg" muted loop playsinline preload="none" aria-label="Vídeo do barbeiro passando a máquina num cabelo platinado"></video>
                 </div>
                 <div class="carousel-item">
-                  <img loading="lazy" src="imagens/exemplos/exemplo-3.svg" alt="Imagem de exemplo 3">
+                  <img loading="lazy" src="imagens/instagram/corte-2.jpg" alt="Cliente com corte texturizado e degradê na lateral">
                 </div>
               </div>
             </div>
@@ -145,10 +150,9 @@
            Content-Security-Policy (_headers e .htaccess). -->
       <div class="center-column">
         <div class="hero-video">
-          <div class="hero-video__reserva">
-            <img src="imagens/logo-completo-grande.png" alt="">
-            <span class="hero-video__aviso">Vídeo em breve</span>
-          </div>
+          <video src="videos/barbearia.mp4" poster="imagens/instagram/capa-video.jpg"
+                 autoplay muted loop playsinline preload="metadata"
+                 aria-label="Vídeo da barbearia: fachada, equipe e cortes"></video>
         </div>
       </div>
 
@@ -159,13 +163,13 @@
             <div class="carousel-container">
               <div class="carousel">
                 <div class="carousel-item">
-                  <img loading="lazy" src="imagens/exemplos/exemplo-4.svg" alt="Imagem de exemplo 4">
+                  <img loading="lazy" src="imagens/instagram/corte-4.jpg" alt="Barbeiro finalizando um corte crespo">
                 </div>
                 <div class="carousel-item">
-                  <img loading="lazy" src="imagens/exemplos/exemplo-5.svg" alt="Imagem de exemplo 5">
+                  <video src="videos/degrade.mp4" poster="imagens/instagram/capa-degrade.jpg" muted loop playsinline preload="none" aria-label="Vídeo de um cliente com degradê navalhado finalizado"></video>
                 </div>
                 <div class="carousel-item">
-                  <img loading="lazy" src="imagens/exemplos/exemplo-6.svg" alt="Imagem de exemplo 6">
+                  <img loading="lazy" src="imagens/instagram/corte-3.jpg" alt="Cliente com franja reta e degradê baixo">
                 </div>
               </div>
             </div>
